@@ -1,0 +1,24 @@
+body#my-custom-body {
+    background-color: #f8f8f8;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+    .header-logo {
+        height: 100px;
+        width: auto;
+      }
+
+  .main-sidebar {
+    background-color: #000000;
+  }
+
+  
+  .main-sidebar.sidebar-style-2 {
+    background-color: #f8f8f8;
+  }
+
+  body{
+    background-color: #f8f8f8;
+  }

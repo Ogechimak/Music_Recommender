@@ -1,0 +1,256 @@
+# import librosa
+# import librosa.display
+# import IPython.display as ipd
+# import numpy as np
+# import os
+
+# def feature_extraction(file_path):
+#     #load audio file
+#     x, sample_rate = librosa.load(file_path, res_type= 'kaiser_fast')
+#     # extract feactures from the audio
+#     mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=50).T, axis=0)
+
+#     return mfcc
+
+# feature = {}
+# directory = 'liked_songs/'
+# for audio in os.listdir(directory):
+#     audio_path = directory+audio
+#     feature[audio_path] = feature_extraction(audio_path)
+
+import librosa
+import numpy as np
+import os
+
+def feature_extraction(file_path):
+    try:
+        # Load audio file
+        x, sample_rate = librosa.load(file_path, res_type='kaiser_fast')
+        # Extract MFCC features
+        mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=50).T, axis=0)
+        return mfcc
+    except Exception as e:
+        print(f"Error processing {file_path}: {e}")
+        return None
+
+# Directory containing the audio files
+directory = 'liked_songs/'
+
+# Dictionary to store features for each audio file
+feature = {}
+
+# Process each audio file in the directory
+for audio in os.listdir(directory):
+    audio_path = os.path.join(directory, audio)
+    # Check if the file is a valid audio file (optional: add more extensions if needed)
+    if audio_path.endswith(('.wav', '.mp3', '.flac', '.ogg')):
+        mfcc_features = feature_extraction(audio_path)
+        if mfcc_features is not None:
+            feature[audio_path] = mfcc_features
+
+print("Feature extraction complete.")
+
+
+
+
+
+
+
+
+# import librosa
+# import numpy as np
+# import os
+# import soundfile as sf
+# from audioread import NoBackendError
+
+# def feature_extraction(file_path):
+#     try:
+#         # Try using soundfile backend
+#         x, sample_rate = sf.read(file_path)
+#     except Exception as e:
+#         print(f"Soundfile backend failed for {file_path}: {e}")
+#         try:
+#             # Fall back to librosa's audioread backend
+#             x, sample_rate = librosa.load(file_path, res_type='kaiser_fast')
+#         except NoBackendError as e:
+#             print(f"Audioread backend failed for {file_path}: {e}")
+#             return None
+#         except Exception as e:
+#             print(f"Librosa load failed for {file_path}: {e}")
+#             return None
+    
+#     try:
+#         # Extract features from the audio
+#         mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=50).T, axis=0)
+#     except Exception as e:
+#         print(f"Feature extraction failed for {file_path}: {e}")
+#         return None
+
+#     return mfcc
+
+# feature = {}
+# directory = 'liked_songs/'
+# if os.path.exists(directory):
+#     for audio in os.listdir(directory):
+#         audio_path = os.path.join(directory, audio)
+#         if os.path.isfile(audio_path):  # Ensure it's a file
+#             print(f"Processing {audio_path}")
+#             mfcc_features = feature_extraction(audio_path)
+#             if mfcc_features is not None:
+#                 feature[audio_path] = mfcc_features
+# else:
+#     print(f"Directory {directory} does not exist.")
+
+
+# import librosa
+# import numpy as np
+# import os
+
+# def feature_extraction(file_path):
+#     try:
+#         # Load audio file
+#         x, sample_rate = librosa.load(file_path, res_type='kaiser_fast')
+#         if len(x) < 2048:
+#             raise ValueError("Audio file too short for feature extraction")
+        
+#         # Extract features from the audio
+#         mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=13).T, axis=0)
+#         return mfcc
+#     except Exception as e:
+#         print(f"Feature extraction failed for {file_path}: {e}")
+#         return None
+
+# feature = {}
+# directory = 'liked_songs/'
+
+# for audio in os.listdir(directory):
+#     audio_path = os.path.join(directory, audio)
+#     print(f"Processing {audio_path}")
+#     features = feature_extraction(audio_path)
+#     if features is not None:
+#         feature[audio_path] = features
+
+# # If needed, save the extracted features to a file or process further
+# # For example:
+# # with open('features.json', 'w') as f:
+# #     json.dump(feature, f)
+
+
+# from pydub import AudioSegment
+# import os
+
+# def convert_to_wav(directory):
+#     for audio in os.listdir(directory):
+#         audio_path = os.path.join(directory, audio)
+#         if audio_path.endswith(".mp3"):
+#             sound = AudioSegment.from_mp3(audio_path)
+#             wav_path = audio_path.replace(".mp3", ".wav")
+#             sound.export(wav_path, format="wav")
+#             print(f"Converted {audio_path} to {wav_path}")
+
+# convert_to_wav('liked_songs/')
+
+
+
+
+# import librosa
+# import numpy as np
+# import os
+# import warnings
+
+# def feature_extraction(file_path):
+#     try:
+#         # Suppress specific warnings from librosa
+#         with warnings.catch_warnings():
+#             warnings.simplefilter("ignore", UserWarning)
+#             x, sample_rate = librosa.load(file_path, res_type='kaiser_fast')
+#             if len(x) < 2048:
+#                 raise ValueError("Audio file too short for feature extraction")
+
+#             # Extract MFCC features
+#             mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=13).T, axis=0)
+#             return mfcc
+#     except Exception as e:
+#         print(f"Feature extraction failed for {file_path}: {e}")
+#         return None
+
+# feature = {}
+# directory = 'liked_songs/'
+
+# for audio in os.listdir(directory):
+#     audio_path = os.path.join(directory, audio)
+#     print(f"Processing {audio_path}")
+#     features = feature_extraction(audio_path)
+#     if features is not None:
+#         feature[audio_path] = features
+
+# # Save extracted features if needed
+# # Example: Save to a JSON file
+# # import json
+# # with open('features.json', 'w') as f:
+# #     json.dump(feature, f)
+
+# print("Feature extraction complete.")
+
+
+# print("Extracted features:")
+# for audio_path, features in feature.items():
+#     print(f"{audio_path}: {features}")
+
+
+# import librosa
+# import numpy as np
+# import os
+# import warnings
+# import json
+# import csv
+
+# def feature_extraction(file_path):
+#     try:
+#         # Suppress specific warnings from librosa
+#         with warnings.catch_warnings():
+#             warnings.simplefilter("ignore", UserWarning)
+#             x, sample_rate = librosa.load(file_path, res_type='kaiser_fast')
+#             if len(x) < 2048:
+#                 raise ValueError("Audio file too short for feature extraction")
+
+#             # Extract MFCC features
+#             mfcc = np.mean(librosa.feature.mfcc(y=x, sr=sample_rate, n_mfcc=13).T, axis=0)
+#             return mfcc
+#     except Exception as e:
+#         print(f"Feature extraction failed for {file_path}: {e}")
+#         return None
+
+# feature = {}
+# directory = 'liked_songs/'
+
+# for audio in os.listdir(directory):
+#     audio_path = os.path.join(directory, audio)
+#     print(f"Processing {audio_path}")
+#     features = feature_extraction(audio_path)
+#     if features is not None:
+#         feature[audio_path] = features
+
+# # Print extracted features
+# print("Extracted features:")
+# for audio_path, features in feature.items():
+#     print(f"{audio_path}: {features}")
+
+# # Save to JSON
+# with open('features.json', 'w') as f:
+#     json.dump(feature, f)
+
+# print("Features saved to features.json")
+
+# # Save to CSV
+# with open('features.csv', 'w', newline='') as csvfile:
+#     fieldnames = ['file_path'] + [f'mfcc_{i}' for i in range(13)]
+#     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+#     writer.writeheader()
+#     for audio_path, features in feature.items():
+#         row = {'file_path': audio_path}
+#         row.update({f'mfcc_{i}': feature for i, feature in enumerate(features)})
+#         writer.writerow(row)
+
+# print("Features saved to features.csv")
