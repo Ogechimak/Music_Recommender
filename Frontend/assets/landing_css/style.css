@@ -31,7 +31,12 @@
   }
   
   nav ul li {
-    margin-right: 2rem;
+    margin-left: 15px;
+    margin-right: 25px;
+  
+  }
+  li:last-child a:hover {
+    color: #3253e7;
   }
   
   nav ul li a {
@@ -40,15 +45,23 @@
   }
   
   nav ul li a:hover {
-    color: #ff6b6b;
+    color: #3253e7;
+  }
+
+  li {
+    margin-right: 40px; /* Adjust the value as needed */
+  }
+  
+  li:last-child {
+    margin-left: 5rem; /* Remove the right margin from the last list item */
   }
   
   
-  .logo{
+  /* .logo{
     height: 30px;
-    max-width: 15px;
-    vertical-align: middle;
-  }
+    width: auto;
+  
+  } */
   
   /* Intro section styles */
 
@@ -73,11 +86,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(0, 0, 0);
     text-align:center;
   }
+
   
-  .cover-text h1 {
+  /* .cover-text h1 {
     font-size: 2.5rem;
     margin-bottom: 40px
   }
@@ -85,7 +99,7 @@
   .cover-text p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-  }
+  } */
   
   /* .cover-text .btn {
     display: inline-block;
@@ -196,29 +210,33 @@
 /* About section styles */
 #about {
   /* background-color: #f8f8f8; */
-  padding: 4rem 2rem;
+  padding: 1rem 2rem;
+  
 }
 
 #about h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding-right: 4px;
   
 }
 
-#about h3 {
-  margin-top: 2rem;
-}
-
 #about ul {
   list-style: none;
-  margin-bottom: 2rem;
+  margin-bottom: 10rem;
 }
 
 #about li {
-  margin-bottom: 1rem;
+  margin-bottom: 10rem;
   
 }
+.about-content h2 {
+  margin-bottom: 20px;
+}
+.about-content h4 {
+  margin-top: 40px;
+}
+
 .about-content {
   max-width: 1000px; /* Adjust the maximum width as needed */
   margin: 0 auto; /* Center the section horizontally */
